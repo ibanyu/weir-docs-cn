@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>路由配置详解 · GitBook</title>
+        <title>Namespace配置详解 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -231,7 +231,7 @@
                 <a href="namespace-config.html">
             
                     
-                    路由配置详解
+                    Namespace配置详解
             
                 </a>
             
@@ -244,7 +244,7 @@
                 <a href="config-dynamic-reload.html">
             
                     
-                    配置动态更新
+                    配置热加载
             
                 </a>
             
@@ -326,7 +326,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >路由配置详解</a>
+        <a href=".." >Namespace配置详解</a>
     </h1>
 </div>
 
@@ -341,8 +341,52 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x8DEF;&#x7531;&#x914D;&#x7F6E;&#x8BE6;&#x89E3;">&#x8DEF;&#x7531;&#x914D;&#x7F6E;&#x8BE6;&#x89E3;</h1>
-<p>(TODO)</p>
+                                <h1 id="namespace&#x914D;&#x7F6E;&#x8BE6;&#x89E3;">Namespace&#x914D;&#x7F6E;&#x8BE6;&#x89E3;</h1>
+<p>&#x4EE5;&#x4E0B;&#x7ED9;&#x51FA;&#x4E86;Namespace&#x793A;&#x4F8B;&#x914D;&#x7F6E;.</p>
+<pre><code>version: &quot;v1&quot;
+namespace: &quot;test_namespace&quot;
+frontend:
+  allowed_dbs:
+    - &quot;test_weir_db&quot;
+  slow_sql_time: 50
+  denied_sqls:
+  denied_ips:
+  idle_timeout: 3600
+  users:
+    - username: &quot;hello&quot;
+      password: &quot;world&quot;
+    - username: &quot;hello1&quot;
+      password: &quot;world1&quot;
+backend:
+  instances:
+    - &quot;127.0.0.1:3306&quot;
+  username: &quot;root&quot;
+  password: &quot;12344321&quot;
+  selector_type: &quot;random&quot;
+  pool_size: 10
+  idle_timeout: 60
+</code></pre><ul>
+<li>version: &#x914D;&#x7F6E;schema&#x7684;&#x7248;&#x672C;&#x53F7;, &#x76EE;&#x524D;&#x4E3A;v1</li>
+<li>namespace: Namespace&#x540D;&#x79F0;, &#x8981;&#x6C42;&#x6574;&#x4E2A;Proxy&#x96C6;&#x7FA4;&#x5185;&#x552F;&#x4E00;</li>
+<li>frontend: &#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x76F8;&#x5173;&#x914D;&#x7F6E;<ul>
+<li>allowed_dbs: &#x5BA2;&#x6237;&#x7AEF;&#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x7684;Database&#x5217;&#x8868;</li>
+<li>slow_sql_time: &#x6162;SQL&#x65E5;&#x5FD7;&#x9608;&#x503C;&#x65F6;&#x95F4; (&#x5355;&#x4F4D;: &#x6BEB;&#x79D2;)</li>
+<li>denied_sqls: SQL&#x8303;&#x5F0F;&#x9ED1;&#x540D;&#x5355;&#x5217;&#x8868;</li>
+<li>denied_ips: IP&#x9ED1;&#x540D;&#x5355;&#x5217;&#x8868;</li>
+<li>idle_timeout: &#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x7A7A;&#x95F2;&#x8D85;&#x65F6;&#x5173;&#x95ED;&#x65F6;&#x95F4; (&#x5355;&#x4F4D;: &#x79D2;)</li>
+<li>users: &#x7528;&#x6237;&#x8FDE;&#x63A5;&#x4FE1;&#x606F;&#x5217;&#x8868;</li>
+</ul>
+</li>
+<li>backend: &#x540E;&#x7AEF;&#x8FDE;&#x63A5;&#x76F8;&#x5173;&#x914D;&#x7F6E;<ul>
+<li>instances: TiDB Server&#x5B9E;&#x4F8B;&#x5730;&#x5740;&#x5217;&#x8868;</li>
+<li>username: &#x8FDE;&#x63A5;TiDB Server&#x7528;&#x6237;&#x540D;</li>
+<li>password: &#x8FDE;&#x63A5;TiDB Server&#x5BC6;&#x7801;</li>
+<li>selector_type: &#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B56;&#x7565;, &#x76EE;&#x524D;&#x53EA;&#x652F;&#x6301;random</li>
+<li>pool_size: &#x8FDE;&#x63A5;&#x6C60;&#x6700;&#x5927;&#x8FDE;&#x63A5;&#x6570; (&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;TiDB Server)</li>
+<li>idle_timeout: &#x8FDE;&#x63A5;&#x6C60;&#x8FDE;&#x63A5;&#x7A7A;&#x95F2;&#x8D85;&#x65F6;&#x5173;&#x95ED;&#x65F6;&#x95F4; (&#x5355;&#x4F4D;: &#x79D2;)</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -375,7 +419,7 @@
                 </a>
                 
                 
-                <a href="config-dynamic-reload.html" class="navigation navigation-next " aria-label="Next page: 配置动态更新">
+                <a href="config-dynamic-reload.html" class="navigation navigation-next " aria-label="Next page: 配置热加载">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -386,7 +430,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"路由配置详解","level":"1.4.2","depth":2,"next":{"title":"配置动态更新","level":"1.4.3","depth":2,"path":"manual/config-dynamic-reload.md","ref":"manual/config-dynamic-reload.md","articles":[]},"previous":{"title":"Proxy配置详解","level":"1.4.1","depth":2,"path":"manual/proxy-config.md","ref":"manual/proxy-config.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"manual/namespace-config.md","mtime":"2020-11-12T12:32:26.901Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-12T12:33:10.459Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Namespace配置详解","level":"1.4.2","depth":2,"next":{"title":"配置热加载","level":"1.4.3","depth":2,"path":"manual/config-dynamic-reload.md","ref":"manual/config-dynamic-reload.md","articles":[]},"previous":{"title":"Proxy配置详解","level":"1.4.1","depth":2,"path":"manual/proxy-config.md","ref":"manual/proxy-config.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"manual/namespace-config.md","mtime":"2020-11-12T13:10:08.481Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-12T13:10:55.045Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
